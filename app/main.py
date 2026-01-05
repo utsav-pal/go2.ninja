@@ -11,7 +11,6 @@ from fastapi import FastAPI, Depends, HTTPException, Request, Response
 from fastapi.responses import RedirectResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from sqlalchemy.orm import Session
 from pydantic import BaseModel, field_validator
 from typing import Optional
@@ -23,7 +22,7 @@ from .models import URL
 Base.metadata.create_all(bind=engine)
 
 # Configuration
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1,go2.ninja").split(",")
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
 SHORT_CODE_LENGTH = 7
 SHORT_CODE_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 MAX_URL_LENGTH = 2048
@@ -35,18 +34,13 @@ app = FastAPI(
     title="Go2.Ninja",
     version="1.0.0",
     docs_url="/docs",
-    redoc_url=None,  # Disable redoc in production
+    redoc_url=None,
 )
 
-# Security Middleware
-app.add_middleware(
-    TrustedHostMiddleware,
-    allowed_hosts=ALLOWED_HOSTS
-)
-
+# CORS Middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_HOSTS,
+    allow_origins=["*"],
     allow_credentials=False,
     allow_methods=["GET", "POST"],
     allow_headers=["Content-Type"],
