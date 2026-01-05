@@ -1,0 +1,23 @@
+# Go2.Ninja - .gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+
+# Environment (NEVER commit secrets)
+.env
+.env.local
+.env.production
+
+# Database
+*.db
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store

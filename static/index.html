@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Go2.Ninja - Lightning fast URL shortener. Create short, ninja-fast links in seconds.">
+    <meta name="keywords" content="url shortener, link shortener, short links, go2 ninja, free url shortener">
+    <title>Go2.Ninja - Lightning Fast URL Shortener</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
+                </svg>
+                <span>Go2<span class="logo-accent">.Ninja</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="/docs" class="nav-link" target="_blank">API Docs</a>
+                <a href="https://github.com/utsav-pal/go2.ninja" class="nav-link nav-github" target="_blank"
+                    rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                </a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-badge">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                        <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
+                    </svg>
+                    <span>Ninja-Fast URL Shortener</span>
+                </div>
+                <h1 class="hero-title">
+                    Shorten Like a
+                    <span class="gradient-text">Ninja.</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Transform long URLs into lightning-fast short links. Free, instant, no signup.
+                </p>
+
+                <!-- URL Shortener Form -->
+                <div class="shortener-card">
+                    <form id="shorten-form" class="shorten-form">
+                        <div class="input-wrapper">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                            </svg>
+                            <input type="text" id="url-input" class="url-input"
+                                placeholder="Enter URL (e.g., google.com)" required autocomplete="off">
+                        </div>
+                        <button type="submit" id="shorten-btn" class="shorten-btn">
+                            <span class="btn-text">Shorten URL</span>
+                            <span class="btn-loader hidden"></span>
+                            <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                                <polyline points="12 5 19 12 12 19" />
+                            </svg>
+                        </button>
+                    </form>
+                    <p id="error-message" class="error-message hidden"></p>
+
+                    <!-- Result Section -->
+                    <div id="result-section" class="result-section hidden">
+                        <div class="result-header">
+                            <svg class="success-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                <polyline points="22 4 12 14.01 9 11.01" />
+                            </svg>
+                            <span>Your shortened URL is ready!</span>
+                        </div>
+                        <div class="result-box">
+                            <input type="text" id="short-url" class="short-url-input" readonly>
+                            <button id="copy-btn" class="copy-btn" title="Copy to clipboard">
+                                <svg class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                                </svg>
+                                <span id="copy-text">Copy</span>
+                            </button>
+                        </div>
+                        <div class="result-meta">
+                            <span class="meta-label">Original URL:</span>
+                            <span id="original-url" class="meta-value"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Why Choose Go2.Ninja?</h2>
+                    <p>Everything you need to create and manage short URLs</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                            </svg>
+                        </div>
+                        <h3>Lightning Fast</h3>
+                        <p>Generate short URLs in milliseconds. No loading, no waiting.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="20" x2="18" y2="10" />
+                                <line x1="12" y1="20" x2="12" y2="4" />
+                                <line x1="6" y1="20" x2="6" y2="14" />
+                            </svg>
+                        </div>
+                        <h3>Click Analytics</h3>
+                        <p>Track how many times your shortened links are clicked.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                            </svg>
+                        </div>
+                        <h3>Secure & Reliable</h3>
+                        <p>Your links are safe and always accessible, 24/7.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="2" y1="12" x2="22" y2="12" />
+                                <path
+                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                            </svg>
+                        </div>
+                        <h3>No Sign Up</h3>
+                        <p>Start shortening URLs immediately. No registration needed.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="16 18 22 12 16 6" />
+                                <polyline points="8 6 2 12 8 18" />
+                            </svg>
+                        </div>
+                        <h3>Developer API</h3>
+                        <p>RESTful API with full documentation for developers.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
+                        </div>
+                        <h3>Open Source</h3>
+                        <p>Fully open source. Self-host or contribute on GitHub.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Everything you need to know about Go2.Ninja</p>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>What is a URL shortener?</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="6 9 12 15 18 9" />
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>A URL shortener is a tool that takes a long URL and creates a shorter, more manageable
+                                version. When someone clicks on the short link, they're automatically redirected to the
+                                original URL. This is useful for sharing links on social media, in emails, or anywhere
+                                with character limits.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Is Go2.Ninja free to use?</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="6 9 12 15 18 9" />
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes! Go2.Ninja is completely free to use. There are no hidden fees, no premium plans, and
+                                no limits on how many URLs you can shorten. Ninja speed, zero cost.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>How long do shortened URLs last?</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="6 9 12 15 18 9" />
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Shortened URLs created with Go2.Ninja are permanent and never expire. Once you create a
+                                short link, it will continue to redirect to your original URL indefinitely.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Can I track how many clicks my link gets?</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="6 9 12 15 18 9" />
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes! Every shortened URL comes with built-in analytics. After shortening a URL, you'll
+                                see click statistics including total clicks and when the link was created. You can also
+                                access stats via our API.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Is there an API available?</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="6 9 12 15 18 9" />
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes! We provide a RESTful API that allows you to programmatically create short URLs and
+                                retrieve statistics. Check out our <a href="/docs">API Documentation</a> for endpoints,
+                                examples, and integration guides.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Can I self-host Go2.Ninja?</span>
+                            <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="6 9 12 15 18 9" />
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Absolutely! Go2.Ninja is open source and can be self-hosted on your own server. This
+                                gives you complete control over your data and allows you to customize the service to
+                                your needs. Check our GitHub repository for installation instructions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>About Go2.Ninja</h2>
+                        <p>Go2.Ninja is a lightning-fast URL shortening service built for speed. Our
+                            mission is to provide the fastest, most reliable link shortener on the web.
+                        </p>
+                        <p>Built with Python FastAPI and SQLite, Go2.Ninja is lightweight, blazing fast, and can
+                            handle thousands of redirects per second like a true ninja.</p>
+                        <div class="tech-stack">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">FastAPI</span>
+                            <span class="tech-badge">SQLite</span>
+                            <span class="tech-badge">Open Source</span>
+                        </div>
+                    </div>
+                    <div class="about-stats">
+                        <div class="about-stat">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-desc">Free Forever</span>
+                        </div>
+                        <div class="about-stat">
+                            <span class="stat-number">&lt;50ms</span>
+                            <span class="stat-desc">Redirect Speed</span>
+                        </div>
+                        <div class="about-stat">
+                            <span class="stat-number">∞</span>
+                            <span class="stat-desc">Links Supported</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="/" class="footer-logo">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                            <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" />
+                        </svg>
+                        <span>Go2.Ninja</span>
+                    </a>
+                    <p>A fast URL shortener built with FastAPI & PostgreSQL</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Links</h4>
+                        <a href="#features">Features</a>
+                        <a href="/docs">API</a>
+                        <a href="https://github.com/utsav-pal/go2.ninja" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Made with ♥ by <a href="https://github.com/utsav-pal" target="_blank">Utsav Pal</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+
+</html>
