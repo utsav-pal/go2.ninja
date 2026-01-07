@@ -84,9 +84,6 @@ curl -X POST http://localhost:8000/api/shorten \
 {"short_url": "http://localhost:8000/abc123", "short_code": "abc123", "original_url": "https://example.com"}
 ```
 
-## Deploy
-
-Push to GitHub, connect to Railway, add `DATABASE_URL` env var.
 
 ## License
 
