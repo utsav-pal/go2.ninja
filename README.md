@@ -1,6 +1,6 @@
 # Go2.Ninja
 
-A URL shortener built with Python.
+A URL shortener built with Python.   
 
 ## How It Works
 
